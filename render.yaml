@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: telegram-otp-bot
+    env: node
+    plan: free
+    buildCommand: npm install && npx puppeteer browsers install chrome
+    startCommand: node render-start.js
+    healthCheckPath: /health
+    envVars:
+      - key: EMAIL
+        sync: false
+      - key: PASSWORD
+        sync: false
+      - key: BOT_TOKEN
+        sync: false
+      - key: CHAT_ID
+        sync: false
+      - key: PORT
+        value: "10000"
+      - key: RENDER
+        value: "true"
+      - key: PUPPETEER_CACHE_DIR
+        value: "/opt/render/.cache/puppeteer"
